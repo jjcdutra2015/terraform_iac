@@ -1,0 +1,12 @@
+=== Comandos terraform ===
+terraform init
+terraform plan
+terraform apply
+
+=== Conectar SSH AWS ===
+ssh -i "iac-julio.pem" ubuntu@ec2-18-237-233-113.us-west-2.compute.amazonaws.com
+
+Liberar security group no ec2, inbound e outbound.
+
+=== Expor aplicação fora da instancia ===
+nohup busybox httpd -f -p 8080 &
