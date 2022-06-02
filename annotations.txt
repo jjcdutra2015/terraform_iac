@@ -10,3 +10,6 @@ Liberar security group no ec2, inbound e outbound.
 
 === Expor aplicação fora da instancia ===
 nohup busybox httpd -f -p 8080 &
+
+=== Executar ansible ===
+ansible-playbook playbook.yml -u ubuntu --private-key iac-julio.pem -i hosts.yml
