@@ -14,3 +14,7 @@ nohup busybox httpd -f -p 8080 &
 
 === Executar ansible ===
 ansible-playbook playbook.yml -u ubuntu --private-key iac-julio.pem -i hosts.yml
+
+=== Ativar e listar libs python venv ===
+. bin/activate
+pip freeze

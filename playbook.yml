@@ -7,3 +7,9 @@
         - virtualenv
       update_cache: yes
     become: yes
+  - name: Instalar dependencias com pip, django e djangorest
+    pip:
+      virtualenv: /home/ubuntu/iac/venv
+      name:
+        - django
+        - djangorestframework
