@@ -23,3 +23,6 @@ pip freeze
 === Criar projeto python com django (Executar dentro da venv) ===
 django-admin startproject setup . 
 python manage.py runserver 0.0.0.0:8000
+
+=== Criar chave de segurança com ssh ===
+ssh-keygen
