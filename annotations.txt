@@ -17,6 +17,7 @@ ansible-playbook playbook.yml -u ubuntu --private-key iac-julio.pem -i hosts.yml
 
 === Ativar e listar libs python venv ===
 . bin/activate
+deactivate - Sair do venv
 pip freeze
 
 === Criar projeto python com django (Executar dentro da venv) ===
