@@ -12,15 +12,18 @@
       repo: https://github.com/alura-cursos/clientes-leo-api.git
       dest: /home/ubuntu/iac
       version: master
+      force: yes
   - name: Instalar dependencias com pip, django e djangorest
     pip:
       virtualenv: /home/ubuntu/iac/venv
-      name:
-        - django
-        - djangorestframework
+      requirements: /home/ubuntu/iac/requirements.txt
   - name: Alterando hosts do settings
     lineinfile:
       path: /home/ubuntu/iac/setup/settings.py
       regexp: 'ALLOWED_HOSTS'
       line: 'ALLOWED_HOSTS = ["*"]'
       backrefs: yes
+  - name: configurando o bando de dados
+    shell: '. /home/ubuntu/iac/venv/bin/activate; python /home/ubuntu/iac/manage.py migrate'
+  - name: carregando dados iniciais
+    shell: '. /home/ubuntu/iac/venv/bin/activate; python /home/ubuntu/iac/manage.py loaddata clientes.json'
