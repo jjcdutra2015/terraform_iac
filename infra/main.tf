@@ -11,19 +11,19 @@ terraform {
 
 provider "aws" {
   profile = "default"
-  region  = "us-west-2"
+  region  = var.regiao_aws
 }
 
 resource "aws_instance" "app_server" {
   ami           = "ami-0cb4e786f15603b0d"
-  instance_type = "t2.micro"
-  key_name = "iac-julio"
+  instance_type = var.instancia
+  key_name = var.chave
   tags = {
     Name = "Terraform Ansible Pytohn"
   }
 }
 
 resource "aws_key_pair" "chaveSSH" {
-  key_name = "DEV"
-  public_key = file("iac-dev.pub")
+  key_name = var.chave
+  public_key = file("${var.chave}.pub")
 }
