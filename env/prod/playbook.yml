@@ -1,0 +1,26 @@
+- hosts: terraform-ansible
+  tasks:
+  - name: Instalar Python3, virtualenv
+    apt:
+      pkg: 
+        - python3
+        - virtualenv
+      update_cache: yes
+    become: yes
+  - name: Git clone
+    ansible.builtin.git:
+      repo: https://github.com/alura-cursos/clientes-leo-api.git
+      dest: /home/ubuntu/iac
+      version: master
+  - name: Instalar dependencias com pip, django e djangorest
+    pip:
+      virtualenv: /home/ubuntu/iac/venv
+      name:
+        - django
+        - djangorestframework
+  - name: Alterando hosts do settings
+    lineinfile:
+      path: /home/ubuntu/iac/setup/settings.py
+      regexp: 'ALLOWED_HOSTS'
+      line: 'ALLOWED_HOSTS = ["*"]'
+      backrefs: yes
