@@ -15,20 +15,27 @@ provider "aws" {
 }
 
 resource "aws_launch_template" "maquina" {
-  image_id = "ami-0cb4e786f15603b0d"
+  image_id      = "ami-0cb4e786f15603b0d"
   instance_type = var.instancia
-  key_name = var.chave
+  key_name      = var.chave
   tags = {
     Name = "Terraform Ansible Pytohn"
   }
-  security_group_names = [ var.grupo_seguranca ]
+  security_group_names = [var.grupo_seguranca]
 }
 
 resource "aws_key_pair" "chaveSSH" {
-  key_name = var.chave
+  key_name   = var.chave
   public_key = file("${var.chave}.pub")
 }
 
-output "IP_publico" {
-  value = aws_instance.app_server.public_ip
+resource "aws_autoscaling_group" "grupo" {
+  availability_zones = ["${var.regiao_aws}a"]
+  name               = var.nomeGrupo
+  max_size           = var.maximo
+  min_size           = var.minimo
+  launch_template {
+    id      = aws_launch_template.maquina.id
+    version = "$Latest"
+  }
 }
