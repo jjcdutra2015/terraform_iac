@@ -10,6 +10,3 @@ variable "instancia" {
 variable "grupo_seguranca" {
   type = string
 }
-variable "descricao_seguranca" {
-  type = string
-}

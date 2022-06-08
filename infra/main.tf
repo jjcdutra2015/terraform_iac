@@ -21,6 +21,7 @@ resource "aws_launch_template" "maquina" {
   tags = {
     Name = "Terraform Ansible Pytohn"
   }
+  security_group_names = [ var.grupo_seguranca ]
 }
 
 resource "aws_key_pair" "chaveSSH" {
