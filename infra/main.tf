@@ -14,8 +14,8 @@ provider "aws" {
   region  = var.regiao_aws
 }
 
-resource "aws_instance" "app_server" {
-  ami           = "ami-0cb4e786f15603b0d"
+resource "aws_launch_template" "maquina" {
+  image_id = "ami-0cb4e786f15603b0d"
   instance_type = var.instancia
   key_name = var.chave
   tags = {
