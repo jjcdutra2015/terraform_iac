@@ -26,3 +26,8 @@ python manage.py runserver 0.0.0.0:8000
 
 === Criar chave de segurança com ssh ===
 ssh-keygen
+
+=== Teste de carga - Requisição ===
+https://locust.io/
+Instalar via pip install locust
+No windows é necessário baixar ferramenta de build para visual studio
