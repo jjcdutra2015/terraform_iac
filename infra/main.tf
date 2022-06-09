@@ -22,7 +22,7 @@ resource "aws_launch_template" "maquina" {
     Name = "Terraform Ansible Pytohn"
   }
   security_group_names = [var.grupo_seguranca]
-  user_data = filebase64("ansible.sh")
+  user_data            = filebase64("ansible.sh")
 }
 
 resource "aws_key_pair" "chaveSSH" {
@@ -47,4 +47,9 @@ resource "aws_default_subnet" "subnet_1" {
 
 resource "aws_default_subnet" "subnet_2" {
   availability_zone = "${var.regiao_aws}b"
+}
+
+resource "aws_lb" "loadBalancer" {
+  internal = false
+  subnets  = [aws_default_subnet.subnet_1.id, aws_default_subnet.subnet_2.id]
 }
