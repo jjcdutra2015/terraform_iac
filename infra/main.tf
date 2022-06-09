@@ -55,6 +55,10 @@ resource "aws_lb" "loadBalancer" {
   subnets  = [aws_default_subnet.subnet_1.id, aws_default_subnet.subnet_2.id]
 }
 
+resource "aws_default_vpc" "default" {
+
+}
+
 resource "aws_lb_target_group" "alvoLoadBalancer" {
   name     = "maquinasAlvo"
   port     = "8000"
@@ -62,6 +66,11 @@ resource "aws_lb_target_group" "alvoLoadBalancer" {
   vpc_id   = aws_default_vpc.default.id
 }
 
-resource "aws_default_vpc" "default" {
-
+resource "aws_lb_listener" "entradaLoadBalancer" {
+  load_balancer_arn = aws_lb.loadBalancer.arn
+  port              = "8000"
+  protocol          = "HTTP"
+  default_action {
+    target_group_arn = aws_lb_target_group.alvoLoadBalancer.arn
+  }
 }
