@@ -31,3 +31,5 @@ ssh-keygen
 https://locust.io/
 Instalar via pip install locust
 No windows é necessário baixar ferramenta de build para visual studio
+Criar o arquivo carga.py
+locust -f carga.py

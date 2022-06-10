@@ -71,6 +71,7 @@ resource "aws_lb_listener" "entradaLoadBalancer" {
   port              = "8000"
   protocol          = "HTTP"
   default_action {
+    type             = "forward"
     target_group_arn = aws_lb_target_group.alvoLoadBalancer.arn
   }
 }
